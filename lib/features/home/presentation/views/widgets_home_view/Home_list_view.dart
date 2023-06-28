@@ -1,5 +1,5 @@
-import 'package:bookly/features/home/presentation/views/widgets/item_list_view.dart';
 import 'package:flutter/material.dart';
+import 'item_list_view.dart';
 
 class HomeListView extends StatelessWidget {
   const HomeListView({Key? key}) : super(key: key);
