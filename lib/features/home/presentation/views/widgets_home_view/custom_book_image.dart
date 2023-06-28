@@ -1,15 +1,15 @@
 import 'package:bookly/core/utils/assets.dart';
 import 'package:flutter/material.dart';
 
-class ItemListView extends StatelessWidget {
-  const ItemListView({Key? key}) : super(key: key);
+class CustomBookImage extends StatelessWidget {
+  const CustomBookImage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     //AspectRatio(aspectRatio: 3 / 2)
     // you can wrap the sizedBox with AspectRatio to resize image right
     return AspectRatio(
-        aspectRatio: 2.7 / 5,
+        aspectRatio: 2.7 / 4,
       child: Container(
         decoration: BoxDecoration(
           color: Colors.deepOrangeAccent,

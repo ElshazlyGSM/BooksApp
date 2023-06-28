@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'item_list_view.dart';
+import 'custom_book_image.dart';
 
 class HomeListView extends StatelessWidget {
   const HomeListView({Key? key}) : super(key: key);
@@ -13,7 +13,7 @@ class HomeListView extends StatelessWidget {
           itemBuilder: (context, index) {
             return const Padding(
               padding: EdgeInsets.symmetric(horizontal: 8),
-              child: ItemListView(),
+              child: CustomBookImage(),
             );
           }),
     );
