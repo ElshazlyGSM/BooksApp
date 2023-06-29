@@ -1,8 +1,8 @@
 import 'package:bookly/core/utils/style.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'widgets_book_details_view/custom_appbar_book_details_view.dart';
 import 'widgets_book_details_view/price_row.dart';
+import 'widgets_book_details_view/rating_row_book_details.dart';
 import 'widgets_home_view/custom_book_image.dart';
 
 class BookDetailsView extends StatelessWidget {
@@ -30,66 +30,85 @@ class BookDetailsBody extends StatelessWidget {
         SliverFillRemaining(
           hasScrollBody: false,
           child: Column(
-          children: [
-            const CustomAppbarBookDetailsView(),
-            const SizedBox(
-              height: 33,
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: width * .17),
-              child: const CustomBookImage(),
-            ),
-            const SizedBox(
-              height: 43,
-            ),
-            const Text(
-              'The Jungle Book',
-              style: Styles.textStyle30,
-            ),
-            const SizedBox(
-              height: 4,
-            ),
-            Opacity(
-              opacity: .6,
-              child: Text(
-                'Rudyard Kipling',
-                style: Styles.textStyle18.copyWith(),
+            children: [
+              const CustomAppbarBookDetailsView(),
+              const SizedBox(
+                height: 33,
               ),
-            ),
-            const SizedBox(
-              height: 14,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
-                Icon(
-                  size: 15,
-                  FontAwesomeIcons.solidStar,
-                  color: Color(0xffFFDD4F),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: width * .17),
+                child: const CustomBookImage(),
+              ),
+              const SizedBox(
+                height: 43,
+              ),
+              const Text(
+                'The Jungle Book',
+                style: Styles.textStyle30,
+              ),
+              const SizedBox(
+                height: 4,
+              ),
+              const Opacity(
+                opacity: .6,
+                child: Text(
+                  'Rudyard Kipling',
+                  style: Styles.textStyle18,
                 ),
-                SizedBox(
-                  width: 6.3,
+              ),
+              const SizedBox(
+                height: 14,
+              ),
+              const RatingRowBookDetails(),
+              const SizedBox(
+                height: 37,
+              ),
+              const PriceRow(),
+              const Expanded(
+                child: SizedBox(
+                  height: 49,
                 ),
-                Text(
-                  '4.8',
-                  style: Styles.textStyle16,
+              ),
+              const Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  'You can also like',
+                  style: TextStyle(fontWeight: FontWeight.bold),
                 ),
-                SizedBox(
-                  width: 9,
-                ),
-                Text(
-                  '(3254)',
-                  style: Styles.textStyle14,
-                ),
-              ],
-            ),
-            const SizedBox(
-              height: 37,
-            ),
-            const PriceRow(),
-          ],
-        ),),
+              ),
+              const SizedBox(
+                height: 16,
+              ),
+              const BookDetailsListView()
+            ],
+          ),
+
+        ),
+
       ],
     );
   }
 }
+
+class BookDetailsListView extends StatelessWidget {
+  const BookDetailsListView({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: MediaQuery.of(context).size.height * .15,
+      child: ListView.builder(
+          scrollDirection: Axis.horizontal,
+          padding: EdgeInsets.zero,
+          itemCount: 10,
+          itemBuilder: (context, index) {
+            return const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 5),
+              child: CustomBookImage(),
+            );
+          }),
+    );
+  }
+}
+
+
