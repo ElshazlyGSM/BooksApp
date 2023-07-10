@@ -8,22 +8,34 @@ class SearchBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Column(
-        children: const [
-          TextField(
-            decoration: InputDecoration(
-              suffixIcon: Icon(Icons.search),
-              hintText: 'Search here',
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.all(
-                  Radius.circular(10),
+        children:  [
+          Row(
+            children:  [
+              IconButton(onPressed: (){
+                Navigator.pop(context);
+              }, icon: const Icon(Icons.arrow_back),),
+              const Expanded(
+                child: Padding(
+                  padding: EdgeInsets.only(top: 20,right: 30,bottom: 20),
+                  child: TextField(
+                    decoration: InputDecoration(
+                      suffixIcon: Icon(Icons.search),
+                      hintText: 'Search here',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(10),
+                        ),
+                      ),
+                    ),
+                  ),
                 ),
               ),
-            ),
+            ],
           ),
-          SizedBox(
-            height: 20,
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 30),
+            child: SearchListView(),
           ),
-          SearchListView(),
         ],
       ),
     );
