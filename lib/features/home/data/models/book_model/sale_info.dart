@@ -1,6 +1,6 @@
-import 'ListPrice.dart';
-import 'RetailPrice.dart';
-import 'Offers.dart';
+import 'list_price.dart';
+import 'retail_price.dart';
+import 'offers.dart';
 
 class SaleInfo {
   SaleInfo({

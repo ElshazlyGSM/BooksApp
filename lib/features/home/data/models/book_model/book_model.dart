@@ -1,7 +1,7 @@
-import 'SaleInfo.dart';
+import 'sale_info.dart';
 import 'AccessInfo.dart';
-import 'SearchInfo.dart';
-import 'VolumeInfo.dart';
+import 'search_info.dart';
+import 'volume_info.dart';
 
 class BookModel {
   BookModel({
