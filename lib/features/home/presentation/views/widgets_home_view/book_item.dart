@@ -1,10 +1,11 @@
 import 'package:bookly/constants.dart';
 import 'package:bookly/core/utils/app_router.dart';
-import 'package:bookly/core/utils/assets.dart';
 import 'package:bookly/core/utils/style.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
+
+import 'custom_book_image.dart';
 
 class BookItem extends StatelessWidget {
   const BookItem({Key? key}) : super(key: key);
@@ -17,21 +18,9 @@ class BookItem extends StatelessWidget {
       },
       child: Row(
         children: [
-          SizedBox(
+          const SizedBox(
             height: 105,
-            child: AspectRatio(
-              aspectRatio: 2.7 / 4.5,
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Colors.cyanAccent,
-                  borderRadius: BorderRadius.circular(10),
-                  image: const DecorationImage(
-                    fit: BoxFit.fill,
-                    image: AssetImage(AssetsData.testImage),
-                  ),
-                ),
-              ),
-            ),
+            child: CustomBookImage(imageUr: 'https://imgv3.fotor.com/images/blog-richtext-image/part-blurry-image.jpg'),
           ),
           const SizedBox(
             width: 30,
@@ -86,3 +75,4 @@ class BookItem extends StatelessWidget {
     );
   }
 }
+

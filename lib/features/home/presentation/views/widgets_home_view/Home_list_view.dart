@@ -19,11 +19,13 @@ class HomeListView extends StatelessWidget {
                 .size
                 .height * .35,
             child: ListView.builder(
+              physics: const BouncingScrollPhysics(),
+                itemCount: state.book.length,
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (context, index) {
-                  return const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 8),
-                    child: CustomBookImage(),
+                  return  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8),
+                    child: CustomBookImage(imageUr: state.book[index].volumeInfo.imageLinks.thumbnail),
                   );
                 }),
           );
