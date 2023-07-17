@@ -1,53 +1,24 @@
-import 'list_price.dart';
-import 'retail_price.dart';
-import 'offers.dart';
+import 'package:equatable/equatable.dart';
 
-class SaleInfo {
-  SaleInfo({
-      this.country, 
-      this.saleability, 
-      this.isEbook, 
-      this.listPrice, 
-      this.retailPrice, 
-      this.buyLink, 
-      this.offers,});
+class SaleInfo extends Equatable {
+	final String? country;
+	final String? saleability;
+	final bool? isEbook;
 
-  SaleInfo.fromJson(dynamic json) {
-    country = json['country'];
-    saleability = json['saleability'];
-    isEbook = json['isEbook'];
-    listPrice = json['listPrice'];
-    retailPrice = json['retailPrice'] != null ? RetailPrice.fromJson(json['retailPrice']) : null;
-    buyLink = json['buyLink'];
-    if (json['offers'] != null) {
-      offers = [];
-      json['offers'].forEach((v) {
-        offers!.add(Offers.fromJson(v));
-      });
-    }
-  }
-  String? country;
-  String? saleability;
-  bool? isEbook;
-  ListPrice? listPrice;
-  RetailPrice? retailPrice;
-  String? buyLink;
-  List<Offers>? offers;
+	const SaleInfo({this.country, this.saleability, this.isEbook});
 
-  Map<String, dynamic> toJson() {
-    final map = <String, dynamic>{};
-    map['country'] = country;
-    map['saleability'] = saleability;
-    map['isEbook'] = isEbook;
-    map['listPrice'] = listPrice;
-    if (retailPrice != null) {
-      map['retailPrice'] = retailPrice!.toJson();
-    }
-    map['buyLink'] = buyLink;
-    if (offers != null) {
-      map['offers'] = offers!.map((v) => v.toJson()).toList();
-    }
-    return map;
-  }
+	factory SaleInfo.fromJson(Map<String, dynamic> json) => SaleInfo(
+				country: json['country'] as String?,
+				saleability: json['saleability'] as String?,
+				isEbook: json['isEbook'] as bool?,
+			);
 
+	Map<String, dynamic> toJson() => {
+				'country': country,
+				'saleability': saleability,
+				'isEbook': isEbook,
+			};
+
+	@override
+	List<Object?> get props => [country, saleability, isEbook];
 }
