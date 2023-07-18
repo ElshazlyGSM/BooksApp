@@ -18,7 +18,7 @@ class BookDetailsViewPart1 extends StatelessWidget {
       ),
       Padding(
         padding: EdgeInsets.symmetric(horizontal: width * .17),
-        child:  CustomBookImage(imageUr: 'https://imgv3.fotor.com/images/blog-richtext-image/part-blurry-image.jpg'),
+        child:  CustomBookImage(imageUrl: 'https://imgv3.fotor.com/images/blog-richtext-image/part-blurry-image.jpg'),
       ),
       const SizedBox(
         height: 43,

@@ -25,7 +25,7 @@ class HomeListView extends StatelessWidget {
                 itemBuilder: (context, index) {
                   return  Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 8),
-                    child: CustomBookImage(imageUr: state.book[index].volumeInfo.imageLinks.thumbnail),
+                    child: CustomBookImage(imageUrl: state.book[index].volumeInfo.imageLinks.thumbnail),
                   );
                 }),
           );

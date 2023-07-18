@@ -20,7 +20,7 @@ class BookItem extends StatelessWidget {
         children: [
           const SizedBox(
             height: 105,
-            child: CustomBookImage(imageUr: 'https://imgv3.fotor.com/images/blog-richtext-image/part-blurry-image.jpg'),
+            child: CustomBookImage(imageUrl: 'https://imgv3.fotor.com/images/blog-richtext-image/part-blurry-image.jpg'),
           ),
           const SizedBox(
             width: 30,
