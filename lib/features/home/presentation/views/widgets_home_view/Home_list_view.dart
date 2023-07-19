@@ -12,26 +12,26 @@ class HomeListView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<FeaturedBooksCubit, FeaturedBooksState>(
       builder: (context, state) {
-        if(state is FeaturedBooksSuccess){
+        if (state is FeaturedBooksSuccess) {
           return SizedBox(
-            height: MediaQuery
-                .of(context)
-                .size
-                .height * .35,
+            height: MediaQuery.of(context).size.height * .35,
             child: ListView.builder(
-              physics: const BouncingScrollPhysics(),
+                physics: const BouncingScrollPhysics(),
                 itemCount: state.book.length,
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (context, index) {
-                  return  Padding(
+                  return Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 8),
-                    child: CustomBookImage(imageUrl: state.book[index].volumeInfo.imageLinks.thumbnail),
+                    child: CustomBookImage(
+                      imageUrl:
+                          state.book[index].volumeInfo.imageLinks.thumbnail,
+                    ),
                   );
                 }),
           );
-        }else if (state is FeaturedBooksFailure){
+        } else if (state is FeaturedBooksFailure) {
           return CustomMessageError(message: state.errMessage);
-        }else {
+        } else {
           return const CustomCircularProgressIndicator();
         }
       },
