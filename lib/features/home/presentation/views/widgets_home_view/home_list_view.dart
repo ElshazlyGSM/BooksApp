@@ -1,9 +1,10 @@
-import 'package:bookly/core/widgets/custom_circular_progress_indicator.dart';
 import 'package:bookly/core/widgets/custom_message_err.dart';
 import 'package:bookly/features/home/presentation/manger/featured_books_cubit/featured_books_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shimmer/shimmer.dart';
 import 'custom_book_image.dart';
+import 'loading_widget.dart';
 
 class HomeListView extends StatelessWidget {
   const HomeListView({Key? key}) : super(key: key);
@@ -32,7 +33,11 @@ class HomeListView extends StatelessWidget {
         } else if (state is FeaturedBooksFailure) {
           return CustomMessageError(message: state.errMessage);
         } else {
-          return const CustomCircularProgressIndicator();
+          return Shimmer.fromColors(
+            baseColor: Colors.grey.shade300,
+            highlightColor: Colors.grey.shade100,
+            child: const LoadingWidget(padding: 8),
+          );
         }
       },
     );

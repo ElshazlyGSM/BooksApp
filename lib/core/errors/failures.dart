@@ -1,18 +1,16 @@
 import 'package:dio/dio.dart';
 
 abstract class Failure {
-  final String errMessage;
-
   const Failure(this.errMessage);
+
+  final String errMessage;
 }
 
 class ServerFailure extends Failure {
   ServerFailure(super.errMessage);
 
-
-  factory ServerFailure.fromDioError(DioExceptionType dioExceptionType)
-  {
-    switch(dioExceptionType){
+  factory ServerFailure.fromDioException(DioException dioException) {
+    switch (dioException.type) {
       case DioExceptionType.connectionTimeout:
         return ServerFailure('Connection timeout with ApiServer');
       case DioExceptionType.sendTimeout:
@@ -20,28 +18,67 @@ class ServerFailure extends Failure {
       case DioExceptionType.receiveTimeout:
         return ServerFailure('receive timeout with ApiServer');
       case DioExceptionType.badCertificate:
-        return ServerFailure('Connection timeout with ApiServer');
+        return ServerFailure('badCertificate with ApiServer');
       case DioExceptionType.badResponse:
-        return ServerFailure('Connection timeout with ApiServer');
+        return ServerFailure.fromResponse(
+            dioException.response!.statusCode!, dioException.response!.data);
       case DioExceptionType.cancel:
-        return ServerFailure('Connection timeout with ApiServer');
+        return ServerFailure('the request is canceled');
       case DioExceptionType.connectionError:
-        return ServerFailure('Connection timeout with ApiServer');
+        if (dioException.message!.contains('SocketException')) {
+          return ServerFailure('No internet connection');
+        }
+        return ServerFailure('Unexpected Error, please try later');
       case DioExceptionType.unknown:
-        return ServerFailure('Connection timeout with ApiServer');
+        return ServerFailure('there is unknown error ');
+        default:
+          return ServerFailure('Opps There was an error , please try again');
     }
   }
 
-  factory ServerFailure.fromResponse(int statusCode, dynamic response){
-    if(statusCode == 400 || statusCode == 401 || statusCode == 403){
+  factory ServerFailure.fromResponse(int statusCode, dynamic response) {
+    if (statusCode == 400 || statusCode == 401 || statusCode == 403) {
       return ServerFailure(response['error']['message']);
-    }
-    else if(statusCode == 404){
+    } else if (statusCode == 404) {
       return ServerFailure('Your request not found, please try later');
-    }
-    else if (statusCode == 500){
+    } else if (statusCode == 500) {
       return ServerFailure('Internet server error , please try later');
     }
-   return ServerFailure('Opps There was an error , please try again');
+    return ServerFailure('Opps There was an error , please try again');
   }
+
+// factory ServerFailure.fromDioError(DioExceptionType dioExceptionType)
+// {
+//   switch(dioExceptionType){
+//     case DioExceptionType.connectionTimeout:
+//       return ServerFailure('Connection timeout with ApiServer');
+//     case DioExceptionType.sendTimeout:
+//       return ServerFailure('send timeout with ApiServer');
+//     case DioExceptionType.receiveTimeout:
+//       return ServerFailure('receive timeout with ApiServer');
+//     case DioExceptionType.badCertificate:
+//       return ServerFailure('Connection timeout with ApiServer');
+//     case DioExceptionType.badResponse:
+//       return ServerFailure.fromResponse(dioExceptionType., response)
+//     case DioExceptionType.cancel:
+//       return ServerFailure('Connection timeout with ApiServer');
+//     case DioExceptionType.connectionError:
+//       return ServerFailure('Connection timeout with ApiServer');
+//     case DioExceptionType.unknown:
+//       return ServerFailure('Connection timeout with ApiServer');
+//   }
+// }
+//
+// factory ServerFailure.fromResponse(int statusCode, dynamic response){
+//   if(statusCode == 400 || statusCode == 401 || statusCode == 403){
+//     return ServerFailure(response['error']['message']);
+//   }
+//   else if(statusCode == 404){
+//     return ServerFailure('Your request not found, please try later');
+//   }
+//   else if (statusCode == 500){
+//     return ServerFailure('Internet server error , please try later');
+//   }
+//  return ServerFailure('Opps There was an error , please try again');
+// }
 }

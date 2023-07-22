@@ -1,6 +1,6 @@
 import 'package:bookly/core/utils/style.dart';
 import 'package:flutter/material.dart';
-import 'Home_list_view.dart';
+import 'home_list_view.dart';
 import 'best_seller_list_view.dart';
 import 'custom_appbar.dart';
 
@@ -10,7 +10,7 @@ class HomeViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Padding(
+    return  const Padding(
       padding: EdgeInsets.symmetric(horizontal: 30),
       child: CustomScrollView(
         slivers: [
