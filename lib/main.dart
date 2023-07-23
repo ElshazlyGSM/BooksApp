@@ -7,6 +7,7 @@ import 'core/utils/service_locator.dart';
 import 'features/home/data/repos/home_repo_impl.dart';
 import 'features/home/presentation/manger/bloc_observer.dart';
 import 'features/home/presentation/manger/featured_books_cubit/featured_books_cubit.dart';
+import 'features/home/presentation/manger/fetch_related_book/related_book_cubit.dart';
 import 'features/home/presentation/manger/newest_books_cubit/newest_book_cubit.dart';
 
 void main() {
@@ -24,6 +25,7 @@ class BooksApp extends StatelessWidget {
       providers: [
         BlocProvider(create: (context) => FeaturedBooksCubit(getIt.get<HomeRepoImpl>())..fetchFeaturedBooks()),
         BlocProvider(create: (context) => NewestBookCubit(getIt.get<HomeRepoImpl>())..fetchNewestBooks()),
+        BlocProvider(create: (context) => RelatedBookCubit(getIt.get<HomeRepoImpl>())..fetchRelatedBooks()),
       ],
       child: MaterialApp.router(
         routerConfig: AppRouter.router,

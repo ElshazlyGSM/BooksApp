@@ -7,16 +7,16 @@ class BookDetailsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 30),
+        padding: EdgeInsets.symmetric(horizontal: 30),
         child: SafeArea(
             child: CustomScrollView(
           slivers: [
             SliverFillRemaining(
               hasScrollBody: false,
               child: Column(
-                children: const [
+                children: [
                   BookDetailsViewPart1(),
                   Expanded(
                     child: SizedBox(
