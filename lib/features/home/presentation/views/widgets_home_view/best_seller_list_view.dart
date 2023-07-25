@@ -1,3 +1,4 @@
+import 'package:bookly/core/utils/style.dart';
 import 'package:bookly/core/widgets/custom_message_err.dart';
 import 'package:bookly/features/home/presentation/manger/newest_books_cubit/newest_book_cubit.dart';
 import 'package:flutter/material.dart';
@@ -26,7 +27,15 @@ class BestSellerListView extends StatelessWidget {
         }else if(state is NewestBookFailure) {
           return CustomMessageError(message: state.errMessage);
         }else {
-          return const Center(child: CircularProgressIndicator());
+          return const Center(child: Column(
+            children: [
+              CircularProgressIndicator(),
+              SizedBox(
+                height: 20,
+              ),
+              Text('Loading data ...',style: Styles.textStyle18,)
+            ],
+          ));
         }
       },
     );

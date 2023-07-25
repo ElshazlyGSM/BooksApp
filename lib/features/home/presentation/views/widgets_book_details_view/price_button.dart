@@ -7,13 +7,15 @@ class PriceButton extends StatelessWidget {
         this.borderRadius = BorderRadius.zero,
         required this.text,
         this.backgroundColor,
-        this.textColor})
+        this.textColor,
+      this.onPressed})
       : super(key: key);
 
   final BorderRadiusGeometry borderRadius;
   final String text;
   final Color? backgroundColor;
   final Color? textColor;
+  final void Function()? onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +28,7 @@ class PriceButton extends StatelessWidget {
             borderRadius: borderRadius,
           ),
         ),
-        onPressed: () {},
+        onPressed: onPressed,
         child: Text(
           text,
           style: Styles.textStyle18.copyWith(color: textColor),

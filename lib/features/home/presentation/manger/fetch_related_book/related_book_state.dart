@@ -1,16 +1,16 @@
 part of 'related_book_cubit.dart';
 
 @immutable
-abstract class RelatedBookState {}
+abstract class RelatedBooksState {}
 
-class RelatedBookInitial extends RelatedBookState {}
-class RelatedBookLoading extends RelatedBookState {}
-class RelatedBookSuccess extends RelatedBookState {
+class RelatedBookInitial extends RelatedBooksState {}
+class RelatedBookLoading extends RelatedBooksState {}
+class RelatedBookSuccess extends RelatedBooksState {
   final List<BookModel> book;
 
   RelatedBookSuccess(this.book);
 }
-class RelatedBookFailure extends RelatedBookState {
+class RelatedBookFailure extends RelatedBooksState {
   final String errMessage;
 
   RelatedBookFailure(this.errMessage);

@@ -1,7 +1,9 @@
+import 'package:bookly/core/utils/app_router.dart';
 import 'package:bookly/core/widgets/custom_message_err.dart';
 import 'package:bookly/features/home/presentation/manger/featured_books_cubit/featured_books_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:shimmer/shimmer.dart';
 import 'custom_book_image.dart';
 import 'loading_widget.dart';
@@ -23,9 +25,14 @@ class HomeListView extends StatelessWidget {
                 itemBuilder: (context, index) {
                   return Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 8),
-                    child: CustomBookImage(
-                      imageUrl:
-                          state.book[index].volumeInfo.imageLinks.thumbnail,
+                    child: GestureDetector(
+                      onTap: (){
+                        GoRouter.of(context).push(AppRouter.kBookDetailsView,extra: state.book[index]);
+                      },
+                      child: CustomBookImage(
+                        imageUrl:
+                            state.book[index].volumeInfo.imageLinks.thumbnail,
+                      ),
                     ),
                   );
                 }),

@@ -2,7 +2,9 @@ import 'package:bookly/constants.dart';
 import 'package:bookly/core/utils/app_router.dart';
 import 'package:bookly/core/utils/style.dart';
 import 'package:bookly/features/home/data/models/book_model/book_model.dart';
+import 'package:bookly/features/home/presentation/manger/fetch_related_book/related_book_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'custom_book_image.dart';
@@ -19,15 +21,14 @@ class BookItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        GoRouter.of(context).push(AppRouter.kBookDetailsView);
+        GoRouter.of(context).push(AppRouter.kBookDetailsView,extra: bookModel);
       },
       child: Row(
         children: [
-           SizedBox(
+          SizedBox(
             height: 105,
             child: CustomBookImage(
-              imageUrl:
-                  bookModel.volumeInfo.imageLinks.smallThumbnail,
+              imageUrl: bookModel.volumeInfo.imageLinks.smallThumbnail,
             ),
           ),
           const SizedBox(
@@ -50,7 +51,7 @@ class BookItem extends StatelessWidget {
                 const SizedBox(
                   height: 3,
                 ),
-                 Text(
+                Text(
                   bookModel.volumeInfo.authors![0],
                   style: Styles.textStyle14,
                 ),

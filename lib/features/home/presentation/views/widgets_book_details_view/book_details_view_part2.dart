@@ -6,9 +6,9 @@ class BookDetailsViewPart2 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return const Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: const [
+      children: [
       Text(
         'You can also like',
         style: TextStyle(fontWeight: FontWeight.bold),

@@ -5,13 +5,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'related_book_state.dart';
 
-class RelatedBookCubit extends Cubit<RelatedBookState> {
-  RelatedBookCubit(this.homeRepo) : super(RelatedBookInitial());
+class RelatedBooksCubit extends Cubit<RelatedBooksState> {
+  RelatedBooksCubit(this.homeRepo) : super(RelatedBookInitial());
  final HomeRepo homeRepo;
 
-  Future<void> fetchRelatedBooks() async{
+  Future<void> fetchRelatedBooks(String category) async{
     emit(RelatedBookLoading());
-   var result = await homeRepo.fetchRelatedBook();
+   var result = await homeRepo.fetchRelatedBook(category: category);
    result.fold((failure) => {
      emit(RelatedBookFailure(failure.errMessage))
    }, (books) => {emit(RelatedBookSuccess(books))});

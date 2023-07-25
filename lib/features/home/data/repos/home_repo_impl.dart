@@ -49,10 +49,11 @@ class HomeRepoImpl implements HomeRepo {
   }
 
   @override
-  Future<Either<Failure, List<BookModel>>> fetchRelatedBook()async {
+  Future<Either<Failure, List<BookModel>>> fetchRelatedBook(
+      {required String category}) async {
     try {
       var data = await apiService.get(
-        'volumes?Sorting=relevance&q=computer science',
+        'volumes?Sorting=relevance&q=$category',
       );
       List<BookModel> books = [];
       for (var item in data['items']) {
