@@ -5,7 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'related_book_state.dart';
 
-class RelatedBooksCubit extends Cubit<RelatedBooksState> {
+class RelatedBooksCubit extends Cubit<RelatedBookState> {
   RelatedBooksCubit(this.homeRepo) : super(RelatedBookInitial());
  final HomeRepo homeRepo;
 

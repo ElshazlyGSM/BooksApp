@@ -13,7 +13,7 @@ class BookDetailsListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<RelatedBooksCubit, RelatedBooksState>(
+    return BlocBuilder<RelatedBooksCubit, RelatedBookState>(
       builder: (context, state) {
         if (state is RelatedBookSuccess) {
           return SizedBox(

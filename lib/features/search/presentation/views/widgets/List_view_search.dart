@@ -1,6 +1,6 @@
 import 'package:bookly/core/widgets/custom_message_err.dart';
-import 'package:bookly/features/home/presentation/manger/newest_books_cubit/newest_book_cubit.dart';
 import 'package:bookly/features/home/presentation/views/widgets_home_view/book_item.dart';
+import 'package:bookly/features/search/presentation/maner/search_cubit/search_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -9,9 +9,9 @@ class SearchListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<NewestBookCubit, NewestBookState>(
+    return BlocBuilder<SearchCubit, SearchState>(
       builder: (context, state) {
-        if (state is NewestBookSuccess) {
+        if (state is SearchSuccess) {
           return ListView.builder(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
@@ -24,12 +24,10 @@ class SearchListView extends StatelessWidget {
                   child: BookItem(bookModel: state.books[index]),
                 );
               });
-        } else if (state is NewestBookFailure) {
+        } else if (state is SearchFailure) {
           return CustomMessageError(message: state.errMessage);
         }
-        return const Center(
-          child: CircularProgressIndicator(),
-        );
+        return Container();
       },
     );
   }

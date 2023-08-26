@@ -1,4 +1,6 @@
+import 'package:bookly/features/search/presentation/maner/search_cubit/search_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'List_view_search.dart';
 
 class SearchBody extends StatelessWidget {
@@ -8,17 +10,22 @@ class SearchBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Column(
-        children:  [
+        children: [
           Row(
-            children:  [
-              IconButton(onPressed: (){
+            children: [
+              IconButton(onPressed: () {
                 Navigator.pop(context);
               }, icon: const Icon(Icons.arrow_back),),
-              const Expanded(
+              Expanded(
                 child: Padding(
-                  padding: EdgeInsets.only(top: 20,right: 30,bottom: 20),
+                  padding: const EdgeInsets.only(
+                      top: 20, right: 30, bottom: 20),
                   child: TextField(
-                    decoration: InputDecoration(
+                    onChanged: (value) {
+                      BlocProvider.of<SearchCubit>(context).fetchSearch(
+                          value);
+                    },
+                    decoration: const InputDecoration(
                       suffixIcon: Icon(Icons.search),
                       hintText: 'Search here',
                       border: OutlineInputBorder(
